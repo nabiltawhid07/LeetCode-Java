@@ -10,21 +10,16 @@ class Solution {
         else{
         while(num!=0){
             remainder=(num%10);
-    
             numFinal=(numFinal*10)+remainder;
             num=num/10;
-
-
         }
         if(numFinal==x){
             flag=true;
-
         }
         else{
             flag=false;
         }
-        }
-        return flag;
-
+     }
+     return flag;
     }
 }
