@@ -1,4 +1,4 @@
-class Solution{
+class Solution {
     public int[] twoSum(int[] nums, int target) {
         boolean flag=false;
         int[] arr2=new int[2];
