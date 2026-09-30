@@ -1,0 +1,30 @@
+class Solution {
+    public boolean isPalindrome(int x) {
+        int num=x;
+        int numFinal=0;
+        int remainder=0;
+        boolean flag=false;
+        if(x<0){
+            flag=false;
+        }
+        else{
+        while(num!=0){
+            remainder=(num%10);
+    
+            numFinal=(numFinal*10)+remainder;
+            num=num/10;
+
+
+        }
+        if(numFinal==x){
+            flag=true;
+
+        }
+        else{
+            flag=false;
+        }
+        }
+        return flag;
+
+    }
+}
