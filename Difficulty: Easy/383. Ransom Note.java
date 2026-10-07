@@ -29,3 +29,4 @@ class Solution {
         return flag;
     }
 }
+//this way of solving(counting characters) is easier, other ways are lengthy and complicated
