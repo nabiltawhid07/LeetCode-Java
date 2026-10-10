@@ -6,20 +6,8 @@ class Solution {
                 count++;
             }
         }
-        sort
-    //     boolean flag=false;
-    //     for(int j=nums.length-1;j>=(nums.length-count);j--){
-    //         flag=false;
-    //         if(nums[j]!=0){
-    //         flag=true;
-    //         break;
-    //         }
-    //     }
-    //     if(flag==true){
-    //         sort(nums);
-    //         checkArray(count,nums);
-    //     }
-    // }
+       checkArray(count,nums);  //age check kori shob zeroes already end of the array te ase kina(sorted kina)
+    }
     public int[] sort(int[] nums){
         for(int k=0;k<nums.length-1;k++){
             if(nums[k]==0){
@@ -43,11 +31,12 @@ class Solution {
             if(nums[j]!=0){
             flag=true;
             break;
-            }
+            }          //flag==false means array is now sorted, this is the required array..(no need to return the array)
         }
-        if(flag==true){
+        if(flag==true){   //array is not sorted, so sort method is called inside it.
             sort(nums);
-            checkArray(count,nums);
+            checkArray(count,nums);  //sort ekbar korlam, so abar check kori sorted kina
         }
     }
 }
+
