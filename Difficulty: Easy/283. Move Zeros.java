@@ -40,3 +40,11 @@ class Solution {
     }
 }
 
+
+//This code should be made more efficient, i should try solving this problem without creating methods
+//ChatGPT: Approach B — Use one loop and a pointer
+// This is the approach I'd recommend learning.
+// Imagine a pointer that tracks the next position where a non-zero number should go. Traverse the array once, and whenever you encounter a non-zero element, place it in the appropriate position.
+// Think about what should happen to the remaining positions after you've processed all the non-zero elements.
+// Target: \(O(n)\) time and \(O(1)\) extra space.
+
