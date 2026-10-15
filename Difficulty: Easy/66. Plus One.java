@@ -1,32 +1,40 @@
 class Solution {
     public int[] plusOne(int[] digits) {
-        long num=0;
-        long FinalNum=0;
-        for(int i=0;i<digits.length;i++){
-          num=(num*10)+digits[i];  //converting the array into numbers([1,2,3] into 123)
+        boolean flag=false;
+        for(int i=0;i<digits.length;i++){  //checking if all elements are 9([9,9,9,9])
+            flag=false;
+            if(digits[i]==9){
+                flag=true;
+            }
+            else{
+              break;
+            }
         }
-        FinalNum=num+1;  //number+1
-        int count=0;
-        long temp=FinalNum;
-        while(temp!=0){
-            count++;    //counting length of the number
-            temp=temp/10;
+        if(flag==true){
+            int []newDigits=new int[digits.length+1];  //if all elements are 9([9,9,9,9]),then create new array whose size is one larger([1,0,0,0,0])
+            newDigits[0]=1;
+            digits=newDigits;
         }
-        long []arr=new long[count];
-        long remainder=0;
-        int j=count;
-        while(FinalNum!=0){
-            remainder=FinalNum%10;
-            arr[j-1]=remainder;   //converting the final number into array(124 into [1,2,4])
-            FinalNum=FinalNum/10;
-            j--;
+        else{   //flag==false; and it's for general case
+            for(int j=digits.length-1;j>=0;j--){
+                if(digits[j]==9){
+                    digits[j]=0;
+                    if(digits[j-1]==9){  //([2,9,9] theke [3,0,0])
+                        continue;
+                    }
+                    else{
+                        digits[j-1]=digits[j-1]+1;  //([1,2,9] theke [1,3,0])
+                        break;
+                    }
+                }
+                else{  //([1,2,3] theke ([1,2,4]))
+                    digits[j]=digits[j]+1;
+                    break;
+                }
+            }
         }
-        return arr;
+        return digits;
     }
 }
 
-//This logic dosen't work for large numbers such as if digits=[3,0,0,0,0,0,0,0,0,0]
-//then the number will be 3000000000, but 'int' can't handle that much large number...
-//What if we use 'long' data type?
-//then still for larger numbers the code will not work, 
-//so, we have to change the logic and approach, the changed code is provided in the latest commit
+// This code is more efficient than the previous version
