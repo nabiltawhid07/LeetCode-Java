@@ -1,49 +1,35 @@
 class Solution {
     public boolean isPalindrome(String s) {
-        int length=0;
-        boolean flag=false;
-        String empty="";
-        String empty2="";
-        String New="";
-        String New2="";
-        if( (s.length()==1) ) { //edge case handle
-            flag=true;
-        }
-        else{ //general case handle
-        for(int i=0;i<s.length();i++){
-            if((s.charAt(i)>=97 && s.charAt(i)<=122)  || (s.charAt(i)>=65 && s.charAt(i)<=90) || (s.charAt(i)>=48 && s.charAt(i)<=57) ){ //small/capital letters/(0-9) 
-            empty=empty+s.charAt(i);
-            }
-        }
-        empty2=empty2+empty.toLowerCase();
-        length=empty2.length();
-    if(length%2!=0){  //for odd numbered length
-        for(int m=empty2.length()-1;m>=length-(length/2);m--){
-         New=New+empty2.charAt(m);
-        }
-        for(int n=0;n<length-(length/2)-1;n++){
-            New2=New2+empty2.charAt(n);
-        }
-        if(New.equals(New2)){
-            flag=true; 
-        }
+      boolean flag=false;
+      String empty="";
+      for(int i=0; i<s.length();i++){
+        if( (s.charAt(i)>='0' && s.charAt(i)<='9') || (s.charAt(i)>='A' && s.charAt(i)<='Z') || (s.charAt(i)>='a' && s.charAt(i)<='z') ){  //ASCII (48-57),(65-90),(97-122) er jaygay
+          empty=empty+s.charAt(i);  //cleaning the string                                                                                  //'0','9','A','Z','a','z' erokom literal
+        }                                                                                                                                  //characters use kora jabe.
+      }
+      String cleaned=empty.toLowerCase();  //converting all the characters to lowercase
+      if(cleaned.equals("")){  //for edge case
+        flag=true;
+      }
+      else{   //for general case
+    int m=cleaned.length()-1;
+    for(int j=0;j<cleaned.length();j++){
+        flag=false;
+     int n=m-j;
+     if(j>=n){
+        flag=true;
+        break;
+     }
+     else if(cleaned.charAt(j)==cleaned.charAt(n)){
+        flag=true;
+        continue;
+     }
+     else{
+        flag=false;
+        break;
+     }
     }
-    else if(length%2==0){  //for even numbered length
-    for(int m=empty2.length()-1;m>=length-(length/2);m--){
-    New=New+empty2.charAt(m);
-    }
-    for(int n=0;n<length-(length/2);n++){
-        New2=New2+empty2.charAt(n);
-    }
-    if(New.equals(New2)){
-            flag=true;
-    }
+      }
+    return flag;
 }
-        
-        }
-return flag;
-}
-}
-
-
-//Solved some edge cases, now need to make the code more efficient
+} 
