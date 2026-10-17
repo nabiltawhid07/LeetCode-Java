@@ -1,56 +1,42 @@
 class Solution {
     public int removeElement(int[] nums, int val) {
         int pointer=0;
-        boolean flag2=false;
-        for(int p=0;p<nums.length;p++){ //for test case; nums=[3,3], val=5
-            if(nums[p]==val){
-                flag2=true;
-                break;
+        int temp=0;
+        int k=0;
+        boolean flag=false;
+        for(int z=0;z<nums.length;z++){
+            flag=false;
+            if(nums[z]==val){
+                flag=true;   // true: nums er moddhe val ase
+                break;       //false: nums er moddhe val nai
             }
         }
-        if(flag2==false){
-            int k=nums.length;
-            return k;
+        if(flag==false){
+            k=nums.length;
         }
-        if(nums.length==0){  //for test case; nums=[], val=0;
-            int k=0;
-            return k;
-        }
-        else{            //for general test cases
-        while(pointer!=(nums.length-1)){
-        for(int i=0;i<nums.length;i++){
-            boolean flag=false;
-            if(nums[i]==val){
-                pointer=i;
-                for(int j=i;j<nums.length;j++){
-                    if(nums[j]==val){
-                        pointer=j;
-                        continue;
-                    }
-                    else{
-                        int temp=nums[pointer];
-                        nums[pointer]=nums[j];
-                        nums[j]=temp;
-                        flag=true;
-                        break;
+        else{
+        while(pointer!=nums.length-1){
+            for(int i=0;i<nums.length;i++){
+                if(nums[i]==val){
+                    pointer=i;
+                    for(int j=i+1;j<nums.length;j++){
+                        if(nums[j]!=val){
+                         temp=nums[j];
+                         nums[j]=nums[pointer];
+                         nums[pointer]=temp;
+                        }
                     }
                 }
-            }
-            else{
-                continue;
-            }
-            if(flag==true){
-                break;
-            }
-        }
-        }
-        }
-    int k=0;
-    for(int m=0;m<nums.length;m++){
-        if(nums[m]!=val){
-          k++;
+            }        
+    }
+    for(int q=0;q<nums.length;q++){
+        if(nums[q]!=val){
+            k++;
         }
     }
-      return k;
+        }
+    return k;
 }
 }
+
+//slightly efficient version
