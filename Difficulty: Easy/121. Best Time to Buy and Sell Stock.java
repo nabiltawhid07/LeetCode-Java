@@ -1,26 +1,25 @@
 class Solution {
     public int maxProfit(int[] prices) {
-        int i=0;
-        int j=i+1;
         int MaxProfit=0;
-        if(prices.length==0 || prices.length==1){  //edge case handling
-            MaxProfit=0;
-        }
-        else{   //general case handling
-         MaxProfit=prices[j]-prices[i];
-        for(i=0;i<prices.length-1;i++){
-            for(j=i+1;j<prices.length;j++){
-                int MaxProfit2=prices[j]-prices[i];
-                if(MaxProfit2>MaxProfit){
-                    MaxProfit=MaxProfit2;
-                }
+        int lowestPrice=prices[0];
+        int profit=0;
+        int price=0;
+        for(int i=0;i<prices.length;i++){
+            price=prices[i];
+            profit=prices[i]-lowestPrice;
+            if(profit>MaxProfit){
+                MaxProfit=profit;c
+            }
+            if(price<lowestPrice){
+                lowestPrice=price;
             }
         }
-        if(MaxProfit<=0){
+        if(MaxProfit<0){
             MaxProfit=0;
         }
-        }
-        
         return MaxProfit;
     }
 }
+
+//More efficient version, O(n) time complexity only
+// Used 1 loop instead on nested loops.
