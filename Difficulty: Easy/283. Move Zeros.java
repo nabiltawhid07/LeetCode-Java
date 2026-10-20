@@ -1,50 +1,23 @@
 class Solution {
     public void moveZeroes(int[] nums) {
-        int count=0;
-        for(int i=0;i<nums.length;i++){
+        int pointer=0;
+        int i=0;
+        int j=0;
+        for( i=0;i<nums.length;i++){
             if(nums[i]==0){
-                count++;
+                 pointer=i;
+                for( j=i+1;j<nums.length;j++){
+                    if(nums[j]!=0){
+                        int temp=nums[j];
+                        nums[j]=0;
+                        nums[pointer]=temp;
+                        break;
+                    }
+                }
             }
-        }
-       checkArray(count,nums);  //age check kori shob zeroes already end of the array te ase kina(sorted kina)
-    }
-    public int[] sort(int[] nums){
-        for(int k=0;k<nums.length-1;k++){
-            if(nums[k]==0){
-                int temp=nums[k+1];
-                nums[k+1]=nums[k];
-                nums[k]=temp;
-            }
-            else if(nums[k]==0 && nums[k+1]==0){
-                continue;
-            }
-            else{
-                continue;
-            }
-        }
-        return nums;
-    }
-    public void checkArray(int count,int[] nums){
-  boolean flag=false;
-        for(int j=nums.length-1;j>=(nums.length-count);j--){
-            flag=false;
-            if(nums[j]!=0){
-            flag=true;
-            break;
-            }          //flag==false means array is now sorted, this is the required array..(no need to return the array)
-        }
-        if(flag==true){   //array is not sorted, so sort method is called inside it.
-            sort(nums);
-            checkArray(count,nums);  //sort ekbar korlam, so abar check kori sorted kina
+
         }
     }
 }
 
-
-//This code should be made more efficient, i should try solving this problem without creating methods
-//ChatGPT: Approach B — Use one loop and a pointer
-// This is the approach I'd recommend learning.
-// Imagine a pointer that tracks the next position where a non-zero number should go. Traverse the array once, and whenever you encounter a non-zero element, place it in the appropriate position.
-// Think about what should happen to the remaining positions after you've processed all the non-zero elements.
-// Target: \(O(n)\) time and \(O(1)\) extra space.
-
+//more efficient version(mine)
