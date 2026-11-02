@@ -19,10 +19,10 @@ class Solution {
                 required=nums[pointer];
                 break;
              }
+             count=0;
         }
         return required;
         }
         
     }
-
-//need to handle it's time complexity
+//Need to make linear run time complexity
